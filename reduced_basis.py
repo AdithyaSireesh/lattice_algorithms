@@ -1,4 +1,5 @@
 import numpy as np
+import unittest
 
 def get_reduced_basis_2d(u,v):
     """
@@ -18,5 +19,16 @@ def get_reduced_basis_2d(u,v):
     v = v-q*u
     return get_reduced_basis_2d(v, u)
   
-reduced_basis = get_reduced_basis_2d(np.array([1,-26]), np.array([0,43]))
-print(reduced_basis)
+class TestGetReducedBasis2D(unittest.TestCase):
+
+    def test_reduced_basis(self):
+        # Test case 1
+        u1 = np.array([1, -26])
+        v1 = np.array([0, 43])
+        result1 = get_reduced_basis_2d(u1, v1)
+        self.assertEqual(result1[0].tolist(), [-5.,1.] or [5.,-1.])
+
+        # Add more test cases as needed
+
+if __name__ == '__main__':
+    unittest.main()
